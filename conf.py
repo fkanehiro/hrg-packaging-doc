@@ -30,6 +30,7 @@ import os
 # ones.
 extensions = [
     'sphinx.ext.intersphinx',
+    'sphinx.ext.graphviz',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
