@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HRG packagingの利用方法(ユーザ向け) &mdash; HRG packaging 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="HRG packaging 0.1 documentation" href="index.html"/>
+        <link rel="next" title="HRG packagingの利用方法(開発者向け)" href="developer.html"/>
+        <link rel="prev" title="Welcome to HRG packaging’s documentation!" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> HRG packaging</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">HRG packagingの利用方法(ユーザ向け)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">初期設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">パッケージのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">パッケージのアップデート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">パッケージのアンインストール</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">HRG packagingの利用方法(開発者向け)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#id1">はじめに</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#launchpad-daily-build">launchpad Daily Build機能の仕組み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#hrg-packagingrecipe">HRG packagingのソースコードとrecipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#bzr">パッケージの更新に必要なbzrコマンド集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#id6">ビルドの手動トリガ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#id7">ビルド通知、自動ビルドの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#id8">ビルドを行うオペレーティングシステムの種類を追加・削除する方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#id9">ビルドする対象ソフトウェアを追加・削除する方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#id10">ビルドの前処理・後処理を変更する方法</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">HRG packaging</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>HRG packagingの利用方法(ユーザ向け)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/user.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="hrg-packaging">
+<h1>HRG packagingの利用方法(ユーザ向け)<a class="headerlink" href="#hrg-packaging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>HRG packagingはlaunchpadのPPAサービスを使って、hrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアの最新版を容易にインストールできるようにしたパッケージです。</p>
+</div>
+<div class="section" id="id2">
+<h2>初期設定<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>launchpadのPPAサービスを利用するにはadd-apt-repositoryコマンドが必要です。</p>
+<p>ubuntu 12.04や12.10では以下のコマンドでインストールします:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-software-properties
+</pre></div>
+</div>
+<p>ubuntu 14.04以降では以下のコマンドでインストールします:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install software-properties-common
+</pre></div>
+</div>
+<p>add-apt-repositoryコマンドがインストールできたら、以下のコマンドでPPAを登録してください:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo add-apt-repository ppa:hrg/daily
+</pre></div>
+</div>
+<p>ppa:hrg/dailyには最新(daily build版)のパッケージが登録されています。より更新頻度の低い安定版のパッケージをインストールするには、以下のコマンドでstable版のPPAを登録してください:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo add-apt-repository ppa:hrg/stable
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>パッケージのインストール<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>パッケージをインストールするにはapt-getコマンドを使います。</p>
+<p>例えば以下のコマンドを入力するとhrpsys-baseとその依存パッケージをインストールできます:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get update
+$ sudo apt-get install hrpsys-base
+</pre></div>
+</div>
+<p>OpenHRPをインストールしたい場合は:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install openhrp
+</pre></div>
+</div>
+<p>choreonoidをインストールしたい場合は:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install choreonoid
+</pre></div>
+</div>
+<p>とパッケージ名の部分を読み替えてください。</p>
+</div>
+<div class="section" id="id4">
+<h2>パッケージのアップデート<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>パッケージをアップデートするにはapt-getコマンドを使います。</p>
+<p>例えば以下のコマンドを入力するとhrpsys-baseをアップデートできます:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get update
+$ sudo apt-get install hrpsys-base
+</pre></div>
+</div>
+<p>また、以下のコマンドを入力することですべてのパッケージをアップデートできます:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get update
+$ sudo apt-get upgrade
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>パッケージのアンインストール<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>パッケージをアンインストールするにはdpkgコマンドを使います。</p>
+<p>例えば以下のコマンドを入力するとhrpsys-baseをアンインストールできます:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo dpkg -r hrpsys-base
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="developer.html" class="btn btn-neutral float-right" title="HRG packagingの利用方法(開発者向け)"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to HRG packaging’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, AIST.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
