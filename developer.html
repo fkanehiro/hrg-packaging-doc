@@ -155,7 +155,7 @@
 <p>launchpadにはソースコードの最新版を毎日ビルドして自動でパッケージ化してくれるDaily Buildという機能があります。</p>
 <p>Daily Buildではビルド元のソースコードはすべてlaunchpadのコードレポジトリに登録しなければなりません。ただし、外部のコードレポジトリでホストされたソースコードでもビルドできるように、ソースコードをlaunchpadのコードレポジトリに定期的にミラーする機能があります。</p>
 <p>HRG packagingでは、hrpsys-base, choreonoid, OpenHRPの各ソースコードについてはgithubからミラーするように設定し、パッケージをビルドするために必要なdebianフォルダ以下の各設定ファイルについてはlaunchpadで直接ホストしています。</p>
-<p>ソースコードと設定ファイルはrecipeの設定によって一つのソースツリーの形に再構成されビルドが行われます。</p>
+<p>ソースコードと設定ファイルはrecipeの設定によって一つのソースツリーの形に再構成されビルドが行われます。下の図は2つのフォルダからひとつのソースツリーを構成する例となっていますが、recipeの設定で任意の数のフォルダを再構成することができます。</p>
 <p class="graphviz">
 <img src="_images/graphviz-178632ab83da27abc36cd109ce9f29cf2a5383c5.png" alt="digraph foo {
    &quot;source(github,git)&quot; -&gt; &quot;mirror(launchpad,bzr)&quot;
@@ -208,7 +208,7 @@ $ bzr push lp:~hrg/hrg-packaging/hrpsys-base-deb
 <div class="section" id="id5">
 <h3>バージョン番号の更新<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Daily Buildパッケージは以下の規則によってバージョン番号が付与されます:</p>
-<div class="highlight-python"><div class="highlight"><pre>[パッケージ名]-[upstreamバージョン番号]-[レポジトリ連番]-[debianレポジトリ連番]
+<div class="highlight-python"><div class="highlight"><pre>[パッケージ名]-[upstreamバージョン番号]-[日付]-[レポジトリ連番]-[debianレポジトリ連番]
 </pre></div>
 </div>
 <p>パッケージは外部レポジトリの更新があると自動でビルドされ連番が付与されますが、リリースによってバージョン番号が更新された場合は、debian/changelogファイルを編集してパッケージのupstreamバージョン番号を更新する必要があります。</p>
@@ -263,9 +263,16 @@ $ bzr push lp:~hrg/hrg-packaging/hrpsys-base-deb
 <p>Use an existing PPAからビルド結果の出力先PPAを選択します。</p>
 <p>Default distribution seriesからビルドを行うオペレーティングシステムの種類を選択します。</p>
 <p>Recipe textにはバージョン文字列のフォーマット、ベースブランチのURL、オーバーレイするブランチのURLを設定します。例えばhrpsys-baseの場合は以下の設定を行います。</p>
-<div class="highlight-none"><div class="highlight"><pre># bzr-builder format 0.3 deb-version {debupstream}+{revno}+{revno:packaging}
+<div class="highlight-none"><div class="highlight"><pre># bzr-builder format 0.3 deb-version {debupstream}+{date}+{revno}+{revno:packaging}
 lp:~hrg/hrg-packaging/hrpsys-base
 nest-part packaging lp:~hrg/hrg-packaging/hrpsys-base-deb debian debian
+</pre></div>
+</div>
+<p>オーバレイするブランチは複数指定することもできます。以下は、Choreonoidプラグイン用パッケージを作成する際にChoreonoid本体にプラグインレポジトリとdebianレポジトリをオーバレイした例です。</p>
+<div class="highlight-none"><div class="highlight"><pre># bzr-builder format 0.3 deb-version {debupstream}+{date}+{revno}+{revno:plugin}+{revno:packaging}
+lp:~hrg/hrg-packaging/choreonoid
+nest plugin lp:~hrg/hrg-packaging/choreonoid-jvrc-plugin src/JVRCPlugin
+nest-part packaging lp:~hrg/hrg-packaging/choreonoid-jvrc-plugin-deb debian debian
 </pre></div>
 </div>
 <p>ソフトウェアに応じてURLを置き換えることでhrpsys-baseと同様の自動ビルドを行うことができます。</p>
