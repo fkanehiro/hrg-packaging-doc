@@ -20,7 +20,7 @@ Daily Buildではビルド元のソースコードはすべてlaunchpadのコー
 
 HRG packagingでは、hrpsys-base, choreonoid, OpenHRPの各ソースコードについてはgithubからミラーするように設定し、パッケージをビルドするために必要なdebianフォルダ以下の各設定ファイルについてはlaunchpadで直接ホストしています。
 
-ソースコードと設定ファイルはrecipeの設定によって一つのソースツリーの形に再構成されビルドが行われます。
+ソースコードと設定ファイルはrecipeの設定によって一つのソースツリーの形に再構成されビルドが行われます。下の図は2つのフォルダからひとつのソースツリーを構成する例となっていますが、recipeの設定で任意の数のフォルダを再構成することができます。
 
 .. graphviz::
 
@@ -94,7 +94,7 @@ bzrコマンドを使って変更をコミットしプッシュします::
 
 Daily Buildパッケージは以下の規則によってバージョン番号が付与されます::
 
-  [パッケージ名]-[upstreamバージョン番号]-[レポジトリ連番]-[debianレポジトリ連番]
+  [パッケージ名]-[upstreamバージョン番号]-[日付]-[レポジトリ連番]-[debianレポジトリ連番]
 
 パッケージは外部レポジトリの更新があると自動でビルドされ連番が付与されますが、リリースによってバージョン番号が更新された場合は、debian/changelogファイルを編集してパッケージのupstreamバージョン番号を更新する必要があります。
 
@@ -177,9 +177,18 @@ Recipe textにはバージョン文字列のフォーマット、ベースブラ
 
 .. code-block:: none
 
-   # bzr-builder format 0.3 deb-version {debupstream}+{revno}+{revno:packaging}
+   # bzr-builder format 0.3 deb-version {debupstream}+{date}+{revno}+{revno:packaging}
    lp:~hrg/hrg-packaging/hrpsys-base
    nest-part packaging lp:~hrg/hrg-packaging/hrpsys-base-deb debian debian
+
+オーバレイするブランチは複数指定することもできます。以下は、Choreonoidプラグイン用パッケージを作成する際にChoreonoid本体にプラグインレポジトリとdebianレポジトリをオーバレイした例です。
+   
+.. code-block:: none
+
+   # bzr-builder format 0.3 deb-version {debupstream}+{date}+{revno}+{revno:plugin}+{revno:packaging}
+   lp:~hrg/hrg-packaging/choreonoid
+   nest plugin lp:~hrg/hrg-packaging/choreonoid-jvrc-plugin src/JVRCPlugin
+   nest-part packaging lp:~hrg/hrg-packaging/choreonoid-jvrc-plugin-deb debian debian
 
 ソフトウェアに応じてURLを置き換えることでhrpsys-baseと同様の自動ビルドを行うことができます。
 
